@@ -1,19 +1,18 @@
 class TasksController < ApplicationController
   before_action :set_task,only:[ :show, :edit, :update, :destroy ]
-  before_action :ensure_current_user_task_check, only:[:show, :edit, :update, :destroy]
 
   def new
     @task = Task.new
   end
 
   def index
-
-end
+    @tasks = Task.all.order(created_at: "desc")
+  end
 
   def create
-    @task = current_user.tasks.build(task_params)
+    @task = Task.new(task_params)
     if @task.save
-      redirect_to task_path(@task.id), notice:"タスクを作成しました"
+      redirect_to @task, notice: 'success'
     else
       render :new
     end
@@ -40,7 +39,7 @@ end
 
   private
   def task_params
-    params.require(:task).permit(:title,:status,:content,:deadline,:priority, { label_ids: []} )
+    params.require(:task).permit(:title,:content)
   end
 
   def set_task

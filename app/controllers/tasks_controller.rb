@@ -6,13 +6,13 @@ class TasksController < ApplicationController
   end
 
   def index
-    @tasks = Task.all.order(created_at: "desc")
+    @tasks = Task.all.order(created_at: "DESC")
   end
 
   def create
     @task = Task.new(task_params)
     if @task.save
-      redirect_to tasks_path, notice: '詳細が表示されます'
+      redirect_to task_path(@task), notice: ('作成されました')
     else
       render :new
     end

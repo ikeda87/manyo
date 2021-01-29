@@ -1,8 +1,10 @@
 <div class="container">
-  <h3>タスク詳細</h3>
+  <h1>タスク詳細</h1>
+  <% if notice.present? %>
+    <p class="alert alert-success"><%= notice %></p>
+  <% end %>
   <p>タスク：<%= @task.title %></p>
   <p>タスク詳細：<%= @task.content %></p>
   <%= link_to '編集', edit_task_path(@task.id) %>
-  <label>|</label>
   <%= link_to '戻る', tasks_path %>
 </div>

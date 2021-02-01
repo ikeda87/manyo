@@ -1,65 +1,25 @@
-<div class="container">
-  <h1>タスク一覧</h1>
-  <% if notice.present? %>
-    <p class="alert alert-success"><%= notice %></p>
-  <% end %>
-　　  <div class="search_container">
-  　　  <%= form_with(model: @task, url: tasks_path, method: :get,local: true) do|f| %>
-      <div class="search_title">
-        <%= f.label :title, "タイトル検索:" %>
-        <%= f.text_field :title, placeholder:"Input name:", id:"search_textarea" %>
-      </div>
-      <div class="search_status">
-        <%= f.label :status, '状態検索' %>
-        <%= f.select :status, include_blank:"-" %>
-      </div>
-      <div class="search_status">
-        <%= f.label :label_id, 'ラベル検索' %>
-        <%= f.select :status, include_blank:"-" %>
-      </div>
+<h1>タスク一覧</h1>
 
+<div class="main_container">
+<table>
+ <div class="task_item">
+  <tr>
+    <th>タスク名</th>
+    <th>詳細</th>
+  </tr>
+    <% @tasks.each do |task| %>
+    <tr class = "task_row" >
+    <td><%= task.title %></td>
+    <td><%= task.content %></td>
+    <td><%= link_to '編集', edit_task_path(task.id), data: { confirm: '編集していいですか？' } %></td>
+    <td><%= link_to "詳細", task_path(task.id), data: { confirm: '詳細を確認しますか？' } %></td>
+    <td><%= link_to '削除', task_path(task.id), method: :delete, data: { confirm: '削除してよいですか？' } %></td>
+  </tr>
+ </div>
+<% end %>
+</table>
+</div>
 
-
-
-
-
-
-
-
-      <div class="search_btn">
-        <%= f.submit "Search" %>
-      </div>
-    <% end %>
-  </div>
-
-
-
-  <div class="main_container">
-    <table>
-      <div class="task_item">
-        <tr>
-          <th>Task</th>
-          <th>Detail</th>
-          <th>Status</th>
-          <th><%= link_to '▼ 終了期限 ▼',tasks_path(sort_expired: "true"), class:"sort" %></th>
-          <th><%= link_to '▼ 優先度 ▼',tasks_path(sort_priority: "true"), class:"sort" %></th>
-          <th>Label</th>
-        </tr>
-      </div>
-
-        <tr class="task_row">
-          <td><title></td>
-          <td><content></td>
-          <td><status></td>
-          <td><deadline></td>
-          <td><priority></td>
-
-          <td><詳細></td>
-          <td><編集></td>
-          <td><削除></td>
-        </tr>
-    </table>
-  </div>
-  <%= link_to 'Register task',new_task_path, class:'btn btn-info' %>
-  <%= link_to 'Register label',new_label_path, class:'btn btn-info' %>
+<div>
+    <%= link_to 'タスクを登録する',new_task_path, class:'btn btn-info' %>
 </div>

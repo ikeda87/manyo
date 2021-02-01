@@ -1,12 +1,10 @@
 <div class="container">
-  <h1>Task_Detail</h1>
-  <p>Task:<%= @task.title %></p>
-  <p>Detail:<%= @task.content %></p>
-  <p>Status：<%= @task.status %></p>
-  <p>Priority:<%= @task.priority %></p>
-  <p>Deadline:<%= @task.deadline %></p>
-  <p>Label:<% @task.labels.each do|label| %><%= label.name %></p>
+  <h1>タスク詳細</h1>
+  <% if notice.present? %>
+    <p class="alert alert-success"><%= notice %></p>
   <% end %>
+  <p>タスク：<%= @task.title %></p>
+  <p>タスク詳細：<%= @task.content %></p>
   <%= link_to '編集', edit_task_path(@task.id) %>
   <%= link_to '戻る', tasks_path %>
 </div>

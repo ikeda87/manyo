@@ -1,35 +1,18 @@
 <% if @task.errors.any? %>
   <h3><%= @task.errors.count %>件のエラーがあります。</h3>
-  <% @task.errors.full_messages.each do|message| %>
-  <%= message %>
+  <% @task.errors.full_messages.each do|msg| %>
+    <%= msg %><br>
   <% end %>
-  <% end %>
-
+<% end %>
+<br>
 <%= form_with(model:@task,local:true)do|f| %>
   <div>
     <%= f.label :title %><br>
     <%= f.text_field :title %>
   </div>
-
   <div>
     <%= f.label :content %><br>
     <%= f.text_area :content %>
   </div>
-
-  <div>
-    <%= f.label :deadline %><br>
-    <%= f.date_field :deadline %>
-  </div>
-
-  <div>
-    <%= f.label :status %><br>
-    <%= f.select :status,Task.task_statuses.keys, include_blank:"Select" %>
-  </div>
-
-  <div>
-    <%= f.label :priority %><br>
-    <%= f.select :priority, Task.priorities.keys, include_blank:"Select" %>
-  </div>
-
-  <% end %>
-  <%= f.submit "Register" %>
+  <%= f.submit "登録する" %>
+<% end %>

@@ -12,7 +12,7 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     if @task.save
-      redirect_to task_path(@task), notice: ('作成されました')
+      redirect_to task_path(@task.id), notice: ('作成されました')
     else
       render :new
     end

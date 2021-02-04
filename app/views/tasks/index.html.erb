@@ -13,8 +13,8 @@
       <%= f.label :status, 'ステータス　' %>
       <%= f.select :status, Task.task_statuses.keys, include_blank:"-" %>
     </div>
-    <div class="search_btn"><br>
-      <%= f.submit "検索" %><br><br><br>
+    <div class="search_btn">&nbsp&nbsp&nbsp&nbsp&nbsp
+      <%= f.submit "検索" %><br><br>
     </div>
   <% end %>
 </div>
@@ -43,6 +43,10 @@
  <% end %>
   </table>
   </div>
+  <button type="button" class="btn btn-primary btn-lg">
        <%= link_to 'タスクを登録する',new_task_path, class:'btn btn-info' %>
+  </button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+  <button type="button" class="btn btn-outline-primary btn-lg">
        <%= link_to '一覧に戻る', tasks_path, class:'btn btn-info' %>
+  </button>
 </div>

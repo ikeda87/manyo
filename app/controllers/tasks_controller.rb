@@ -10,10 +10,17 @@ class TasksController < ApplicationController
       @tasks = Task.all.sort_deadline
     elsif params[:sort_priority]
       @tasks = Task.all.sort_priority
+    elsif params[:title].present? && params[:status].present?
+        @tasks = Task.where(title: params[:title])
+        @tasks = @tasks.where(status: params[:status])
+    elsif params[:title].present?
+      @tasks = Task.where(title: params[:title])
+    elsif params[:status].present?
+      @tasks = Task.where(status: params[:status])
     else
       @tasks = Task.all.order(created_at: "DESC")
     end
-  end
+   end
 
   def create
     @task = Task.new(task_params)

@@ -8,10 +8,16 @@ ja:
           has_many: "%{record}が存在しているので削除できません"
     models:
       task: タスク
+      user: ユーザー
+    views:
+      Edit: 編集
     attributes:
       task:
         title: タイトル
         content: 詳細
+        deadline: 終了期限
+        status: ステータス
+        priority: 優先度
   date:
     abbr_day_names:
     - 日

@@ -38,9 +38,19 @@ RSpec.configure do |config|
   end
 
   config.before(:each, type: :system) do
+    # driven_by :selenium, using: :headless_chrome, screen_size: [1400, 1400], options: { args: ['no-sandbox'] } if example.metadata[:type] == :system
     driven_by(:selenium_chrome)
   end
-
+  # config.include FactoryBot::Syntax::Methods
+  # config.before(:each) do |example|
+  #   if example.metadata[:type] == :system
+  #     if example.metadata[:js]
+  #       driven_by :selenium, using: :headless_chrome, screen_size: [1400, 1400]
+  #     else
+  #       driven_by :rack_test
+  #     end
+  #   end
+  # end
   # This option will default to `:apply_to_host_groups` in RSpec 4 (and will
   # have no way to turn it off -- the option exists only for backwards
   # compatibility in RSpec 3). It causes shared context metadata to be

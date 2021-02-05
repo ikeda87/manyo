@@ -10,12 +10,12 @@ RSpec.describe 'タスク管理機能', type: :system do
     context 'タイトルで検索をした場合' do
       it "検索キーワードを含むタスクで絞り込まれる" do
         visit tasks_path
-        fill_in 'task_name', with: 'タスク01'
-        fill_in 'task_content', with: 'タスク詳細01'
-        fill_in 'task_deadline', with: '02021-01-22'
+        fill_in 'task_name', with: 'task1'
+        fill_in 'task_content', with: 'task詳細01'
+        fill_in 'task_deadline', with: '02021-02-22'
         select '着手中', from: 'task[status]'
         click_on '登録'
-        expect(page).to have_content 'タスク01'
+        expect(page).to have_content 'task1'
       end
     end
   end
@@ -25,10 +25,10 @@ RSpec.describe 'タスク管理機能', type: :system do
       it "ステータスに完全一致するタスクが絞り込まれる" do
         # ここに実装する
         # プルダウンを選択する「select」について調べてみること
-        expect(page).to have_content 'task01'
+        expect(page).to have_content 'task1'
       end
     end
-    
+
     context 'タイトルの検索とステータス検索をした場合' do
       it "検索キーワードをタイトルに含み、かつステータスに完全一致するタスク絞り込まれる" do
         task_list = all('.task_row')

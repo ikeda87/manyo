@@ -13,7 +13,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         visit new_task_path
         fill_in "タイトル", with: "task1"
         fill_in "詳細", with: "詳細2"
-        fill_in "終了期限", with: "002020-02-22"
+        fill_in "終了期限", with: "002021-02-22"
         select "着手中", from: "ステータス"
         select "高", from: "優先度"
         click_on '登録'
@@ -31,7 +31,7 @@ RSpec.describe 'タスク管理機能', type: :system do
       end
     end
   end
-  
+
   describe '詳細表示機能' do
      context '任意のタスク詳細画面に遷移した場合' do
        it '該当タスクの内容が表示される' do

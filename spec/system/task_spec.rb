@@ -9,19 +9,35 @@ RSpec.describe 'タスク管理機能', type: :system do
 
   describe '新規作成機能' do
     context 'タスクを新規作成した場合' do
-      it 'test' do
+      it '作成したタスクが表示される' do
+        visit new_task_path
+        fill_in "タイトル", with: "task1"
+        fill_in "詳細", with: "詳細2"
+        fill_in "終了期限", with: "002020-02-22"
+        select "着手中", from: "ステータス"
+        select "高", from: "優先度"
+        click_on '登録'
+        expect(page).to have_content 'task1'
       end
     end
   end
+
   describe '一覧表示機能' do
     context '一覧画面に遷移した場合' do
       it '作成済みのタスク一覧が表示される' do
+        task = FactoryBot.create(:task, title: 'task01', content: 'test', status: '着手', deadline: '2022-02-22')
+        visit tasks_path
+        expect(page).to have_content 'task01'
       end
     end
   end
+  
   describe '詳細表示機能' do
      context '任意のタスク詳細画面に遷移した場合' do
        it '該当タスクの内容が表示される' do
+         task = FactoryBot.create(:task, title: 'task01')
+         visit tasks_path
+         expect(page).to have_content 'task'
        end
      end
   end

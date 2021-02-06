@@ -1,4 +1,7 @@
 <div class="container">
+  <div class="row">
+    <div class="col-sm-2" style="background-color:lightblue;">　</div>
+  </div>
   <h1>タスク一覧</h1>
   <% if notice.present? %>
   <p class="alert alert-success"><%= notice %></p>
@@ -20,16 +23,15 @@
 </div>
 <div class="main_container">
 <table>
- <div class="task_item">
-  <tr>
-    <th>タスク名</th>
-    <th>詳細</th>
-    <th>ステータス</th>
-    <th><%= link_to '▼終了期限でソート▼',tasks_path(sort_deadline: "true"), class:"sort" %></th>
-    <th><%= link_to '▼優先度でソート▼',tasks_path(sort_priority: "true"), class:"sort" %></th>
+ <div class="task_item"><tr>
+    <th><div class="col-sm-2" style="background-color:darkgray;">タスク名</div></th>
+    <th><div class="col-sm-2" style="background-color:lightgray;">詳細</div></th>
+    <th><div class="col-sm-2" style="background-color:darkgray;">ステータス</div></th>
+    <th><div class="col-sm-2" style="background-color:lightgray;"><%= link_to '▼終了期限でソート▼',tasks_path(sort_deadline: "true"), class:"sort" %></div></th>
+    <th><div class="col-sm-2" style="background-color:darkgray;"><%= link_to '▼優先度でソート▼',tasks_path(sort_priority: "true"), class:"sort" %></div></th>
   </tr>
     <% @tasks.each do |task| %>
-    <tr class = "task_row" >
+  <tr class = "task_row" >
     <td><%= task.title %></td>
     <td><%= task.content %></td>
     <td><%= task.status %></td>
@@ -41,7 +43,7 @@
   </tr>
  </div>
  <% end %>
-  </table>
+</table>
   </div>
   <button type="button" class="btn btn-primary btn-lg">
        <%= link_to 'タスクを登録する',new_task_path, class:'btn btn-info' %>
@@ -51,4 +53,7 @@
   </button>
   <div class="paginate"><%= paginate @tasks %></div>
   <button type="button" class="btn btn-success">角ボタン</button>
-</div>
+  <br><br><br>
+  <div class="row">
+    <div class="col-sm-2" style="background-color:lightblue;">　</div>
+  </div>

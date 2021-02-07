@@ -32,6 +32,47 @@ RSpec.describe 'タスク管理機能', type: :system do
     end
   end
 
+
+  # describe '一覧表示機能' do
+  #   context '一覧画面に遷移した場合' do
+  #     it '作成済みのタスク一覧が表示される' do
+  #       expect(page).to have_content 'Factoryで作ったデフォルトのタイトル１'
+  #     end
+  #   end
+    context 'タスクが作成日時の降順で並んでいた場合' do
+      it '新しいタスクが一番上に表示される' do
+        # task_list = all('.task_row')
+        expect(task_list[0]).to have_content 'Factoryで作ったデフォルトのコンテンツ3'
+      end
+    end
+
+
+  #   context 'タスクの終了期限で降順でソートした場合' do
+  #     it '終了期限が一番遠いタスクが一番上に表示される' do
+  #       visit new_task_path
+  #       fill_in "タイトル", with: "step3終わらせる"
+  #       fill_in "詳細", with: "最後にpullrequestを忘れない"
+  #       fill_in "終了期限", with: "002020-11-18"
+  #       select "着手中", from: "ステータス"
+  #       select "中", from: "優先度"
+  #       click_button '登録する'
+  #       visit tasks_path
+  #       click_on '終了期限 ▼'
+  #       sleep 1
+  #       task_list = all('.task_row')
+  #       expect(task_list[0]).to have_content 'Factoryで作ったデフォルトのタイトル３'
+  #     end
+  #   end
+  #   context 'タスクの優先順位で降順でソートした場合' do
+  #     it '優先度が高いタスクが一番上に表示される' do
+  #       click_on '優先度 ▼'
+  #       sleep 2
+  #       task_list = all('.task_row')
+  #       expect(task_list[0]).to have_content 'Factoryで作ったデフォルトのタイトル１'
+  #     end
+  #   end
+  # end
+
   describe '詳細表示機能' do
      context '任意のタスク詳細画面に遷移した場合' do
        it '該当タスクの内容が表示される' do

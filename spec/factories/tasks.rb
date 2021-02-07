@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :task do
-    title { 'Factoryで作ったデフォルトのタイトル1' }
+    title { 'title1' }
     content { 'Factoryで作ったデフォルトのコンテンツ1' }
     deadline { '002021-02-21' }
     status { '未着手' }
@@ -8,7 +8,7 @@ FactoryBot.define do
   end
 
   factory :second_task, class: Task do
-    title { 'Factoryで作ったデフォルトのタイトル2' }
+    title { 'title2' }
     content { 'Factoryで作ったデフォルトのコンテンツ2' }
     deadline { '002021-02-22' }
     status { '完了' }
@@ -16,7 +16,7 @@ FactoryBot.define do
   end
 
   factory :third_task, class: Task do
-    title { 'Factoryで作ったデフォルトのタイトル3' }
+    title { 'title3' }
     content { 'Factoryで作ったデフォルトのコンテンツ3' }
     deadline { '002021-02-23' }
     status { '着手中' }

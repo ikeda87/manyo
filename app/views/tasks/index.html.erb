@@ -6,15 +6,15 @@
 <div class="search_container">
   <%= form_with(model: @task, url: tasks_path, method: :get,local: true) do|f| %>
     <div class="search_title">
-      <%= f.label :title, "タスク名　　　" %>
+      <%= f.label :title, "タスク名" %>
       <%= f.text_field :title, placeholder:"タスク名を入力", id:"search_textarea", :size => "50*50" %>
     </div>
     <div class="search_status">
-      <%= f.label :status, 'ステータス　　' %>
+      <%= f.label :status, 'ステータス' %>
       <%= f.select :status, Task.task_statuses.keys, include_blank:"-" %>
     </div>
     <div class="search_btn">
-      <%= f.submit "検　索" %><br><br>
+      <%= f.submit "検索", id:"search_btn" %><br><br>
     </div>
   <% end %>
 </div>
@@ -28,16 +28,16 @@
     <th><div class="col-la" style="background-color:darkgray;"><%= link_to '▼優先度でソート▼',tasks_path(sort_priority: "true"), class:"sort" %></div></th>
   </tr>
     <% @tasks.each do |task| %>
-  <tr class = "task_row" >
-    <td><%= task.title %></td>
-    <td><%= task.content %></td>
-    <td><%= task.status %></td>
-    <td><%= task.deadline %></td>
-    <td><%= task.priority %></td>
-    <td><%= link_to '編集', edit_task_path(task.id), data: { confirm: '編集しますか？' } %></td>
-    <td><%= link_to "詳細", task_path(task.id) %></td>
-    <td><%= link_to '削除', task_path(task.id), method: :delete, data: { confirm: '削除しますか？' } %></td>
-  </tr>
+      <tr class = "task_row" >
+        <td><%= task.title %></td>
+        <td><%= task.content %></td>
+        <td><%= task.status %></td>
+        <td><%= task.deadline %></td>
+        <td><%= task.priority %></td>
+        <td><%= link_to '編集', edit_task_path(task.id), data: { confirm: '編集しますか？' } %></td>
+        <td><%= link_to "詳細", task_path(task.id) %></td>
+        <td><%= link_to '削除', task_path(task.id), method: :delete, data: { confirm: '削除しますか？' } %></td>
+      </tr>
  </div>
  <% end %>
 </table>

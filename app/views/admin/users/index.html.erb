@@ -1,12 +1,11 @@
-
 <%= link_to 'ユーザーを作成する',new_admin_user_path %>
 <h3>管理画面のユーザー一覧</h3>
 <table>
   <tr>
-    <th>ユーザーID</th>
-    <th>ユーザー名</th>
-    <th>タスク数</th>
-    <th>権限</th>
+    <th>ユーザーID:</th>
+    <th>ユーザー名:</th>
+    <th>タスク数:</th>
+    <th>権限:</th>
   </tr>
   <% @users.each do|users| %>
   <tr>

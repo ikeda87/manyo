@@ -4,12 +4,43 @@
     <title>Manyo</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#gnavi">
+            <span class="sr-only">一覧画面</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <%= link_to '一覧画面',tasks_path, class:"navbar-brand" %>
+        </div>
+        <div id="gnavi" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><%= link_to 'タスク一覧',tasks_path %></li>
+            <li><%= link_to 'タスク作成',new_task_path %></li>
+            <% if logged_in? %>
+              <li><%= link_to 'マイページ',user_path(current_user.id) %></li>
+              <li><%= link_to 'ログアウト',session_path(current_user.id), method: :delete, data:{ confirm: "ログアウトしますか？"} %></li>
+              <% if current_user.admin == true %>
+                <li><%= link_to '管理者メニュー', admin_users_path %></li>
+              <% end %>
+            <% else %>
+              <li><%= link_to '新規会員登録',new_user_path %></li>
+              <!-- ログインしているときは、ユーザの新規登録画面（new画面）に行かせないようにコントローラで制御する -->
+              <li><%= link_to 'ログイン',new_session_path %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <% flash.each do |key, value| %>
+      <%= content_tag(:div, value, class: "#{key}") %>
+    <% end %>
     <%= yield %>
   </body>
 </html>

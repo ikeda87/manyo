@@ -43,15 +43,17 @@ RSpec.describe 'タスク管理機能', type: :system do
       context 'タスク終了期限をソートした場合' do
         it '終了期限が最も近いタスクが一番上に表示される' do
           visit tasks_path
+          fill_in "title", with: "step3"
           click_on '終了期限'
           task_list = all('.task_row')
-          expect(task_list[0]).to have_content 'title3'
+          expect(task_list[0]).to have_content 'Factoryで作ったデフォルトのコンテンツ3'
         end
       end
 
       context 'タスクを優先度でソートした場合' do
       it '優先度が最も高いタスクが一番上に表示される' do
         visit tasks_path
+        fill_in "title", with: "step3"
         click_on '優先度'
         task_list = all('.task_row')
         expect(task_list[0]).to have_content 'title1'

@@ -6,8 +6,21 @@ class TasksController < ApplicationController
   end
 
   def index
-    @tasks = Task.all.order(created_at: "DESC")
-  end
+    if params[:sort_deadline]
+      @tasks = Task.all.sort_deadline.pagination(params)
+    elsif params[:sort_priority]
+      @tasks = Task.all.sort_priority.pagination(params)
+    elsif params[:title].present? && params[:status].present?
+        @tasks = Task.where(title: params[:title]).pagination(params)
+        @tasks = @tasks.where(status: params[:status]).pagination(params)
+    elsif params[:title].present?
+      @tasks = Task.where(title: params[:title]).pagination(params)
+    elsif params[:status].present?
+      @tasks = Task.where(status: params[:status]).pagination(params)
+    else
+      @tasks = Task.all.order(created_at: "DESC").pagination(params)
+    end
+   end
 
   def create
     @task = Task.new(task_params)
@@ -39,7 +52,7 @@ class TasksController < ApplicationController
 
   private
   def task_params
-    params.require(:task).permit(:title,:content)
+    params.require(:task).permit(:title,:content,:status,:deadline,:priority)
   end
 
   def set_task

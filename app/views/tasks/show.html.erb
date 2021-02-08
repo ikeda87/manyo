@@ -5,6 +5,9 @@
   <% end %>
   <p>タスク：<%= @task.title %></p>
   <p>タスク詳細：<%= @task.content %></p>
-  <%= link_to '編集', edit_task_path(@task.id) %>
-  <%= link_to '戻る', tasks_path %>
+  <p>終了期限：<%= @task.deadline %></p>
+  <p>ステータス：<%= @task.status %></p>
+  <p>優先度：<%= @task.priority %></p>
+  <%= link_to '編集', edit_task_path(@task.id), class:'btn btn-info' %>
+  <%= link_to '一覧に戻る', tasks_path, class:'btn btn-info' %>
 </div>

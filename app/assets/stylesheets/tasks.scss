@@ -1,0 +1,54 @@
+html {
+  position: relative;
+  min-height: 100%;
+  padding-bottom: 100px;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Avenir','Helvetica Neue','Helvetica','Arial','Hiragino Sans','ヒラギノ角ゴシック',YuGothic,'Yu Gothic','メイリオ', Meiryo,'ＭＳ Ｐゴシック','MS PGothic';
+  background-color: rgb(250,250,250) ;
+}
+.container{
+  margin:0 auto;
+}
+.search_container{
+  padding-top:20px;
+}
+.search_title , .search_status{
+  float: left;
+}
+.search_status{
+  padding-left: 20px;
+}
+td, th{
+  padding:10px 20px;
+  border-top: 1px solid #dddddd;
+  border-bottom: 1px solid #dddddd;
+  text-align: center;
+}
+.sort:hover{
+  text-decoration: none;
+}
+.data_detail, .data_delete{
+  padding:10px 0px;
+}
+.data_edit{
+  padding:10px 0px;
+}
+.data_detail{
+  padding-left: 60px;
+}
+.main_container{
+  padding-bottom: 40px;
+}
+.paginate{
+  padding-top: 30px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: 1px solid #blue;
+    font-weight: 1000;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}

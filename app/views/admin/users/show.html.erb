@@ -1,4 +1,4 @@
-<h3>ユーザー情報</h3>
+<h2>ユーザー情報</h2>
 <p>ユーザーID：<%= @users.id %></p>
 <p>ユーザー名：<%= @users.name %></p>
 <p>タスク数：<%= @users.tasks.count %></p>
@@ -34,5 +34,5 @@
 </table>
 <br>
 <div>
-  <%= link_to '一覧へ', admin_users_path %>
+  <%= link_to '管理一覧画面へ', admin_users_path, class:'btn btn-info' %>
 </div>

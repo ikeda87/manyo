@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      flash[:notice] = "アカウントを作成後、ログインしました。"
+      flash[:notice] = "アカウント作成後、ログインしました。"
       redirect_to user_path(@user.id)
     else
       render :new

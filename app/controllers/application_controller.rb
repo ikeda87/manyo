@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
         redirect_to tasks_path
       end
     else
-      flash[:danger] = 'ログインが必要です。'
+      flash[:danger] = 'アクセス権限がありません。ログイン画面に遷移します。'
       redirect_to new_session_path
     end
   end

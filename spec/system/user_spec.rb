@@ -70,63 +70,60 @@ RSpec.describe 'ユーザー管理機能', type: :system do
     it '管理ユーザはユーザの新規登録ができること' do
       admin_user
       visit new_session_path
-      fill_in "session_email", with: "admin@example.com"
-      fill_in "session_password", with: "19!a@z?0"
+      a_user = FactoryBot.build(:admin_user)
+      fill_in "session_email", with: a_user.email
+      fill_in "session_password", with: a_user.password
       find("#create_tag").click
       visit admin_users_path
-      click_on "ユーザーを作成する"
-      fill_in "user1", with: "user1"
-      fill_in "user1@example.com", with: "user1@example.com"
+      click_on "users_admin_new_link"
+      fill_in "user_name", with: "user2"
+      fill_in "user_email", with: "user2@example.com"
       fill_in "user_password", with: "112233"
       fill_in "user_password_confirmation", with: "112233"
-      click_on "ユーザーを登録する"
+      click_on "users_admin_new_submit"
       expect(page.text).to include "ユーザーを新しく登録しました。"
     end
-#
-#     it '管理ユーザはユーザの詳細画面にアクセスできること' do
-#       user1_user
-#       admin_user
-#       visit new_session_path
-#       fill_in "session_email", with: "admin@example.com"
-#       fill_in "session_password", with: "19!a@z?0"
-#       find("#create_tag").click
-#       visit admin_users_path
-#       click_on "詳細", match: :first
-#       expect(page.text).to include "管理者画面：アカウント情報確認" && "user1_user" && "user1@example.com" && "無し"
-#     end
-#
-#     it '管理ユーザはユーザの編集画面からユーザを編集できること' do
-#       user1_user
-#       admin_user
-#       visit new_session_path
-#       fill_in "session_email", with: "admin@example.com"
-#       fill_in "session_password", with: "19!a@z?0"
-#       find("#create_tag").click
-#       visit admin_users_path
-#       click_on "編集", match: :first
-#       fill_in "user_name", with: ""
-#       fill_in "user_name", with: "change_name"
-#       fill_in "user_email", with: ""
-#       fill_in "user_email", with: "change@example.com"
-#       fill_in "user_password", with: "change@pass"
-#       fill_in "user_password_confirmation", with: "change@pass"
-#       check "user_admin"
-#       click_on "アカウントを編集する"
-#       expect(page.text).to include "管理者画面：アカウント情報確認" && "change_name" && "change@example.com" && ""
-#     end
-#
-#     it '管理ユーザはユーザの削除をできること' do
-#       user1_user
-#       admin_user
-#       visit new_session_path
-#       fill_in "session_email", with: "admin@example.com"
-#       fill_in "session_password", with: "19!a@z?0"
-#       find("#create_tag").click
-#       visit admin_users_path
-#       page.accept_confirm do
-#         click_on "削除", match: :first
-#       end
-#       expect(page.text).not_to include "user1_user" && "user1@example.com" && "無し"
-#     end
-#   end
+
+    it '管理ユーザはユーザの詳細画面にアクセスできること' do
+      user1_user
+      admin_user
+      visit new_session_path
+      a_user = FactoryBot.build(:admin_user)
+      fill_in "session_email", with: a_user.email
+      fill_in "session_password", with: a_user.password
+      find("#create_tag").click
+      visit admin_users_path
+      click_on "users_admin_index", match: :first
+      expect(page.text).to include "ユーザー情報"
+    end
+
+    it '管理ユーザはユーザの編集画面からユーザを編集できること' do
+      user1_user
+      admin_user
+      visit new_session_path
+      a_user = FactoryBot.build(:admin_user)
+      fill_in "session_email", with: a_user.email
+      fill_in "session_password", with: a_user.password
+      find("#create_tag").click
+      visit admin_users_path
+      click_on "users_admin_index_edit", match: :first
+      fill_in "user_name", with: ""
+      fill_in "user_email", with: ""
+      fill_in "user_password", with: "change@pass"
+      fill_in "user_password_confirmation", with: "change@pass"
+      click_on "users_admin_edit"
+      expect(page.text).to include "管理者画面：アカウント情報確認" && "change_name" && "change@example.com" && ""
+    end
+
+    it '管理ユーザはユーザの削除をできること' do
+      user1_user
+      admin_user
+      visit new_session_path
+      a_user = FactoryBot.build(:admin_user)
+      fill_in "session_email", with: a_user.email
+      fill_in "session_password", with: a_user.password
+      find("#create_tag").click
+      visit admin_users_path
+      click_on "users_admin_index_delete", match: :first
+    end
 end

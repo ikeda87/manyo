@@ -1,6 +1,8 @@
-<%= link_to 'ユーザーを作成する',new_admin_user_path %>
-<h3>管理画面のユーザー一覧</h3>
+<h3>管理画面：ユーザーの一覧確認ページ</h3><br>
+<%= link_to 'ユーザーを作成する',new_admin_user_path, id: "users_admin_new_link" %><br>
 <table>
+  <br>
+  <br>
   <tr>
     <th>ユーザーID:</th>
     <th>ユーザー名:</th>
@@ -17,9 +19,10 @@
     <% else %>
       <td>一般</td>
     <% end %>
-    <td><%= link_to 'ユーザー情報', admin_user_path(users.id) %></td>
-    <td><%= link_to '編集', edit_admin_user_path(users.id) %></td>
-    <td class="user_row"><%= link_to '削除', admin_user_path(users.id),method: :delete, data:{ confirm: "本当に削除してよろしいですか？" } %></th>
+    <td><%= link_to 'ユーザー情報', admin_user_path(users.id), id: "users_admin_index" %></td>
+    <td><%= link_to '編集', edit_admin_user_path(users.id), id: "users_admin_index_edit" %></td>
+    <td class="user_row"><%= link_to '削除', admin_user_path(users.id), id: "users_admin_index_delete", method: :delete, data:{ confirm: "本当に削除してよろしいですか？" } %></td>
   </tr>
   <% end %>
 </table>
+<br>

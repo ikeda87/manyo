@@ -63,24 +63,25 @@ RSpec.describe 'ユーザー管理機能', type: :system do
       fill_in "session_password", with: "password"
       find("#create_tag").click
       visit admin_users_path
+      # expect(page.text).to include "管理者の権限がありません。"
     end
   end
 
-#     it '管理ユーザはユーザの新規登録ができること' do
-#       admin_user
-#       visit new_session_path
-#       fill_in "session_email", with: "admin@example.com"
-#       fill_in "session_password", with: "19!a@z?0"
-#       find("#create_tag").click
-#       visit admin_users_path
-#       click_on "ユーザー新規登録"
-#       fill_in "user_name", with: "sample_user"
-#       fill_in "user_email", with: "sample_user@gmail.com"
-#       fill_in "user_password", with: "samplepass"
-#       fill_in "user_password_confirmation", with: "samplepass"
-#       click_on "アカウントを新規作成する"
-#       expect(page.text).to include "アカウントの作成に成功しました。"
-#     end
+    it '管理ユーザはユーザの新規登録ができること' do
+      admin_user
+      visit new_session_path
+      fill_in "session_email", with: "admin@example.com"
+      fill_in "session_password", with: "19!a@z?0"
+      find("#create_tag").click
+      visit admin_users_path
+      click_on "ユーザーを作成する"
+      fill_in "user_name", with: "sample_user"
+      fill_in "user_email", with: "sample_user@gmail.com"
+      fill_in "user_password", with: "samplepass"
+      fill_in "user_password_confirmation", with: "samplepass"
+      click_on "ユーザーを登録する"
+      expect(page.text).to include "ユーザーを新しく登録しました。"
+    end
 #
 #     it '管理ユーザはユーザの詳細画面にアクセスできること' do
 #       user1_user

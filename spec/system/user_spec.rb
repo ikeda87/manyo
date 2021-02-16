@@ -75,10 +75,10 @@ RSpec.describe 'ユーザー管理機能', type: :system do
       find("#create_tag").click
       visit admin_users_path
       click_on "ユーザーを作成する"
-      fill_in "user_name", with: "sample_user"
-      fill_in "user_email", with: "sample_user@gmail.com"
-      fill_in "user_password", with: "samplepass"
-      fill_in "user_password_confirmation", with: "samplepass"
+      fill_in "user1", with: "user1"
+      fill_in "user1@example.com", with: "user1@example.com"
+      fill_in "user_password", with: "112233"
+      fill_in "user_password_confirmation", with: "112233"
       click_on "ユーザーを登録する"
       expect(page.text).to include "ユーザーを新しく登録しました。"
     end

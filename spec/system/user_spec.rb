@@ -35,15 +35,16 @@ RSpec.describe 'ユーザー管理機能', type: :system do
     end
   end
 
-  # describe 'ユーザー情報確認機能'do
-  #   it 'ログイン後にはアカウント情報確認ページに移行する' do
-  #     user1_user
-  #     visit new_session_path
-  #     fill_in "session_email", with: "user1@example.com"
-  #     fill_in "session_password", with: "password"
-  #     find("#create_tag").click
-  #     expect(page.text).to include ""
-  #   end
+  describe 'ユーザー情報確認機能'do
+    it 'ログイン後にはアカウント情報確認ページに移行する' do
+      user1_user
+      visit new_session_path
+      fill_in "session_email", with: "user1@example.com"
+      fill_in "session_password", with: "password"
+      find("#create_tag").click
+      expect(page.text).to include "のページ"
+    end
+  end
 
   describe '管理者機能' do
     it '管理ユーザは管理画面にアクセス' do

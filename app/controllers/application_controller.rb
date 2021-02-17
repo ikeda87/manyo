@@ -9,13 +9,13 @@ class ApplicationController < ActionController::Base
   end
   def ensure_current_user_task_check
     unless current_user.id == @task.user_id
-      flash[:danger] = 'アクセス権限を確認してください。'
+      flash[:danger] = 'タスク一覧に戻ります'
       redirect_to tasks_path
     end
   end
   def ensure_current_user_label_check
     unless current_user.id == @label.user_id
-      flash[:danger] = 'アクセス権限を確認してください。'
+      flash[:danger] = 'タスク一覧に戻ります'
       redirect_to tasks_path
     end
   end

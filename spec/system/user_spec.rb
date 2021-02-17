@@ -64,7 +64,7 @@ RSpec.describe 'ユーザー管理機能', type: :system do
       fill_in "session_password", with: "password"
       find("#create_tag").click
       visit admin_users_path
-      # expect(page.text).to include "管理者の権限がありません。"
+      expect(page.text).to include "タスク一覧"
     end
   end
 

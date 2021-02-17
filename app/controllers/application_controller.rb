@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
   def ensure_current_user
     if logged_in?
       unless current_user.id == params[:id].to_i
-        flash[:danger] = 'ログインを試みました。'
+        flash[:danger] = '管理者以外はアクセスできない'
         redirect_to tasks_path
       end
     else

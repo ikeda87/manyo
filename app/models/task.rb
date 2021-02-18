@@ -14,4 +14,6 @@ class Task < ApplicationRecord
   scope :search_status, -> (status){ where(status: status) }
   scope :pagination, -> (params){ page(params[:page]).per(5) }
   belongs_to :user
+  has_many :task_labels, dependent: :destroy
+  has_many :labels, through: :task_labels, source: :label
 end

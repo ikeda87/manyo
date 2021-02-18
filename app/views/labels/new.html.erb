@@ -1,0 +1,17 @@
+<div class="container">
+  <h1>ラベル登録</h1>
+  <% if @label.errors.any? %>
+    <div id="error_explanation">
+      <h4>ラベルを入力してください。</h4>
+    </div>
+  <% end %>
+  <%= form_with(model: @label, local: true) do |f| %>
+    <div>
+      <%= f.label :name, "ラベル名" %>
+      <br>
+      <%= f.text_field :name %>
+    </div>
+    <br>
+    <%= f.submit "登録" %>
+  <% end %>
+</div>

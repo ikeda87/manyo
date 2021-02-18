@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, presence: true, length:{ minimum:6 }, on: :create
   has_many :tasks, dependent: :destroy
+    has_many :labels, dependent: :destroy
   before_update :check_admin_count
   before_destroy :check_admin_count
 

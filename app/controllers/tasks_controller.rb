@@ -14,13 +14,20 @@ class TasksController < ApplicationController
     elsif params[:title].present? && params[:status].present?
         @tasks = Task.where(title: params[:title]).pagination(params)
         @tasks = @tasks.where(status: params[:status]).pagination(params)
+        # @tasks = @tasks.search_title(params[:task][:title]) unless params[:task][:title].blank?
+        # @tasks = @tasks.search_status(params[:task][:status]) unless params[:task][:status].blank?
     elsif params[:title].present?
       @tasks = Task.where(title: params[:title]).pagination(params)
     elsif params[:status].present?
       @tasks = Task.where(status: params[:status]).pagination(params)
-    elsif params[:task][:label_id].present?
-      @task_label = TaskLabel.where(label_id: params[:task][:label_id]).pluck(:task_id)
-      @task = Task.where(id: @task_label).pagination(params)
+    # elsif params[:task].present?
+    #   @tasks = Task.where(task_labels: params[:task_labels]).pagination(params)
+    # elsif params[:label_id].present?
+    #   @tasks = Task.where(labels: params[:labels]).pagination(params)
+
+    # elsif params[:task][:label_id].present?
+    #   @task_label = TaskLabel.where(label_id: params[:task][:label_id]).pluck(:task_id)
+    #   @task = Task.where(id: @task_label).pagination(params)
     else
       @tasks = Task.all.order(created_at: "DESC").pagination(params)
     end

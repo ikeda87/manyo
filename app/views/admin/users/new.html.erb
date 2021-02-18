@@ -1,0 +1,38 @@
+<h3>ユーザー作成</h3>
+<% if @users.errors.any? %>
+  <div id="error_explanation">
+    <h2>"<%= @users.name %>"は保存されませんでした。</h2>
+    <ul>
+    <% @users.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+<%= form_with(model: @users, url: admin_users_path, local: true) do |f| %>
+  <div class="">
+    <%= f.label :name %>
+    <br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="">
+    <%= f.label :email %>
+    <br>
+    <%= f.email_field :email %>
+  </div>
+  <div class="">
+    <%= f.label :password %>
+    <br>
+    <%= f.password_field :password %>
+  </div>
+  <div class="">
+    <%= f.label :password_confirmation %>
+    <br>
+    <%= f.password_field :password_confirmation %>
+  </div>
+  <%= f.submit "ユーザーを再登録する", id: "users_admin_new_submit" %>
+<% end %>
+<br>
+<div>
+  <%= link_to '一覧へ', admin_users_path %>
+</div>

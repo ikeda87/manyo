@@ -1,0 +1,14 @@
+<h1>ログイン</h1>
+<%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
+  <div class="">
+    <%= f.label :Eメールアドレス %>
+    <br>
+    <%= f.email_field :email %>
+  </div>
+  <div class="">
+    <%= f.label :パスワード %>
+    <br>
+    <%= f.password_field :password %>
+  </div><br>
+  <%= f.submit "ログイン", id: "create_tag" %>
+<% end %>

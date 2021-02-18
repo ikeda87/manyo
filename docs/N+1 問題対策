@@ -1,0 +1,23 @@
+- 「N+1問題を回避するための仕組みを取り入れましょう」
+N＋１問題は、必要以上にSQLを発行しまうこと
+SQLを発行する、ということは、データベースからデータを抽出する操作のことです。この作業が増えると、ウェブアプリケーションのパフォーマンスが落ちてしまい、ユーザーの満足度の低下につながってしまいます。
+
+なので、SQLを発行する回数を減らしたほうがよいのですね。
+
+具体的には、例えば次のようなコードがあります。
+
+app/controllers/user_controller.rb
+
+def
+  @user = User.all
+end
+app/views/index.html.erb
+
+<ul class="users">
+ <% @users.each do |user| %>
+   <li>
+     <%= gravatar_for user, size: 50 %>
+     <%= link_to user.name, user %>
+   </li>
+ <% end %>
+</ul>

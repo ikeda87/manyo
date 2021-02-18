@@ -26,7 +26,7 @@
             <li><%= link_to 'タスク一覧',tasks_path %></li>
             <li><%= link_to 'タスク作成',new_task_path %></li>
             <% if logged_in? %>
-              <li><%= link_to 'マイページ',user_path(current_user.id) %></li>
+              <li><%= link_to 'マイページ',user_path(current_user.id), id: "my_page" %></li>
               <li><%= link_to 'ログアウト',session_path(current_user.id), method: :delete, data:{ confirm: "ログアウトしますか？"} %></li>
               <% if current_user.admin == true %>
                 <li><%= link_to '管理者メニュー', admin_users_path %></li>

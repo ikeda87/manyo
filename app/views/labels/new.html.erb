@@ -9,9 +9,10 @@
     <div>
       <%= f.label :name, "ラベル名" %>
       <br>
-      <%= f.text_field :name %>
+      <%= f.text_field :name, id: "label_name" %>
     </div>
     <br>
-    <%= f.submit "登録" %>
+    <%= f.submit "登録", id: "label_submit" %>
+
   <% end %>
 </div>

@@ -18,6 +18,9 @@ class TasksController < ApplicationController
       @tasks = Task.where(title: params[:title]).pagination(params)
     elsif params[:status].present?
       @tasks = Task.where(status: params[:status]).pagination(params)
+    elsif params[:task][:label_id].present?
+      @task_label = TaskLabel.where(label_id: params[:task][:label_id]).pluck(:task_id)
+      @task = Task.where(id: @task_label).pagination(params)
     else
       @tasks = Task.all.order(created_at: "DESC").pagination(params)
     end
@@ -48,7 +51,7 @@ class TasksController < ApplicationController
   end
   private
   def task_params
-    params.require(:task).permit(:title,:content,:status,:deadline,:priority)
+    params.require(:task).permit(:title,:content,:deadline,:status,:priority, { label_ids: []} )
   end
   def set_task
     @task = Task.find(params[:id])

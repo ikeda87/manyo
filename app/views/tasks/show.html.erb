@@ -9,5 +9,6 @@
   <p>ステータス：<%= @task.status %></p>
   <p>優先度：<%= @task.priority %></p>
   <%= link_to '編集', edit_task_path(@task.id), class:'btn btn-info' %>
+  <label>|</label>
   <%= link_to '一覧に戻る', tasks_path, class:'btn btn-info' %>
 </div>

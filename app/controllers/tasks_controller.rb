@@ -25,33 +25,12 @@ class TasksController < ApplicationController
 
   def create
     @task = current_user.tasks.new(task_params)
-    # @task = Task.new(task_params)
-    # binding.irb
     if @task.save
       redirect_to task_path(@task.id), notice: ('作成されました')
     else
       render :new
     end
   end
-
-# @task = current_user.tasks.new(task_params)
-# if @task.save
-#   flash[:notice] = "タスクの登録に成功しました。"
-#   redirect_to task_path(@task)
-# else
-#   flash.now[:danger] = "タスクの登録に失敗しました。"
-#   render :new
-# end
-# end
-#
-#   @task = current_user.tasks.build(task_params)
-#   if @task.save
-#     redirect_to task_path(@task.id), notice:"タスクを登録しました。"
-#   else
-#     render :new
-#   end
-# end
-
   def show
   end
   def edit

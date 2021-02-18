@@ -21,13 +21,3 @@ class User < ApplicationRecord
     end
   end
 end
-
-#   def admin_change_check
-#     target = User.find_by(id: self.id)
-#     if User.where(admin: true).count <= 2
-#       if target.admin
-#         throw :abort
-#       end
-#     end
-#   end
-# end

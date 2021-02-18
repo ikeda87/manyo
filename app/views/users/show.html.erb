@@ -1,4 +1,18 @@
 <div class="container">
   <h1><%= @user.name %>のページ</h1>
   <p>メールアドレス: <%= @user.email %></p>
+  <% if current_user.labels.count > 0 %>
+    <p>作成したラベル</p>
+    <table>
+      <tr>
+        <th>ラベル名</th>
+      </tr>
+      <% @user.labels.each do|label| %>
+      <tr>
+        <td><%= label.name %></td>
+        <td class="data_delete"><%= link_to '削除',label_path(label.id), method: :delete, data:{ confirm: "削除してもよろしいですか？"} ,class:"label label-danger" %></td>
+      </tr>
+      <% end %>
+    </table>
+  <% end %>
 </div>

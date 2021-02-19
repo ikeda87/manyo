@@ -38,6 +38,7 @@
     <th><div class="col-la" style="background-color:darkgray;">ステータス</div></th>
     <th><div class="col-la" style="background-color:lightgray;"><%= link_to '▼終了期限でソート▼',tasks_path(sort_deadline: "true"), class:"sort" %></div></th>
     <th><div class="col-la" style="background-color:darkgray;"><%= link_to '▼優先度でソート▼',tasks_path(sort_priority: "true"), class:"sort" %></div></th>
+    <th>ラベル</th>
   </tr>
     <% @tasks.each do |task| %>
       <tr class = "task_row" >
@@ -46,6 +47,9 @@
         <td><%= task.status %></td>
         <td><%= task.deadline %></td>
         <td><%= task.priority %></td>
+        <td><% task.labels.each do|label| %>
+        <%= label.name %><br>
+        <% end %></td>
         <td><%= link_to '編集', edit_task_path(task.id), data: { confirm: '編集しますか？' } %></td>
         <td><%= link_to "詳細", task_path(task.id) %></td>
         <td><%= link_to '削除', task_path(task.id), method: :delete, data: { confirm: '削除しますか？' } %></td>

@@ -14,7 +14,7 @@
       <%= f.select :status, Task.task_statuses.keys, include_blank:"-" %>
     </div>
     <div class="search_status">
-      <%= f.label :label_id, '　ラベル　' %>
+      <%= f.label :label_id, 'ラベル' %>
       <% if current_user.id == 1 %>
         <% @default_user = User.find_by(id: 1) %>
         <% @label_list = @default_user.labels %>
@@ -25,8 +25,8 @@
         <%= f.select :label_id, @label_list.collect{ |p|[p.name, p.id] }, include_blank:"-" %>
       <% end %>
     </div>
-    <div class="search_btn">
-      <%= f.submit "検索", id:"search_btn" %><br><br>
+    <div class="search_btn"> &nbsp &nbsp &nbsp
+      <%= f.submit "検索" %><br><br>
     </div>
   <% end %>
 </div>
@@ -47,9 +47,11 @@
         <td><%= task.status %></td>
         <td><%= task.deadline %></td>
         <td><%= task.priority %></td>
-        <td><% task.labels.each do|label| %>
+
+        <td><% task.labels.each do |label| %>
         <%= label.name %><br>
         <% end %></td>
+
         <td><%= link_to '編集', edit_task_path(task.id), data: { confirm: '編集しますか？' } %></td>
         <td><%= link_to "詳細", task_path(task.id) %></td>
         <td><%= link_to '削除', task_path(task.id), method: :delete, data: { confirm: '削除しますか？' } %></td>
@@ -59,7 +61,7 @@
 </table>
 <br>
   </div>
-       <%= link_to 'タスクを登録する',new_task_path, class:'btn btn-success' %>&nbsp &nbsp
+       <%= link_to 'タスクを登録する',new_task_path, class:'btn btn-success' %>&nbsp &nbsp &nbsp
        <%= link_to 'ラベルを登録する',new_label_path, class:'btn btn-success' %><br><br>
        <%= link_to '一覧に戻る', tasks_path, class:'btn btn-info' %>
   <br><br>

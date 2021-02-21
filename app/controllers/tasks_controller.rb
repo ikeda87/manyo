@@ -2,6 +2,7 @@ class TasksController < ApplicationController
   before_action :set_task,only:[ :show, :edit, :update, :destroy ]
   before_action :authenticate_user, only:[:index, :new, :show, :edit, :update, :destroy]
   before_action :ensure_current_user_task_check, only:[:show, :edit, :update, :destroy]
+
   def new
     @task = Task.new
   end
@@ -20,14 +21,16 @@ class TasksController < ApplicationController
       @tasks = Task.where(title: params[:title]).pagination(params)
     elsif params[:status].present?
       @tasks = Task.where(status: params[:status]).pagination(params)
-    # elsif params[:task].present?
-    #   @tasks = Task.where(task_labels: params[:task_labels]).pagination(params)
-    # elsif params[:label_id].present?
-    #   @tasks = Task.where(labels: params[:labels]).pagination(params)
 
-    # elsif params[:task][:label_id].present?
-    #   @task_label = TaskLabel.where(label_id: params[:task][:label_id]).pluck(:task_id)
-    #   @task = Task.where(id: @task_label).pagination(params)
+    # elsif params[:task].present?
+    #   @tasks = Task.where(task: params[:task]).pagination(params)
+    # elsif params[:label_id].present?
+    #   @tasks = Task.select(label_id: params[:label_id]).pagination(params)
+
+    elsif params[:task][:label_id].present?
+      @task_label = TaskLabel.where(label_id: params[:task][:label_id]).pluck(:task_id)
+      @task = Task.where(id: @task_label).pagination(params)
+
     else
       @tasks = Task.all.order(created_at: "DESC").pagination(params)
     end
@@ -45,6 +48,7 @@ class TasksController < ApplicationController
   end
   def edit
   end
+
   def update
     if @task.update(task_params)
       redirect_to tasks_path, notice:"タスクを更新しました"
@@ -52,6 +56,7 @@ class TasksController < ApplicationController
       render :edit
     end
   end
+
   def destroy
     @task.destroy
     redirect_to tasks_path, notice:"タスクを削除しました"

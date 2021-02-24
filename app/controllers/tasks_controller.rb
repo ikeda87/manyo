@@ -44,8 +44,10 @@ class TasksController < ApplicationController
       render :new
     end
   end
+
   def show
   end
+
   def edit
   end
 
@@ -61,10 +63,12 @@ class TasksController < ApplicationController
     @task.destroy
     redirect_to tasks_path, notice:"タスクを削除しました"
   end
+
   private
   def task_params
     params.require(:task).permit(:title,:content,:deadline,:status,:priority, { label_ids: []} )
   end
+  
   def set_task
     @task = Task.find(params[:id])
   end

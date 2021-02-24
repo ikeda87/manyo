@@ -10,7 +10,6 @@ class Task < ApplicationRecord
   scope :sort_deadline, -> { order(deadline: "DESC") }
   scope :sort_priority, -> { order(priority: "DESC") }
   scope :search_title, -> (title){ where("title LIKE?","%#{title}%") }
-  # scope :search_title, -> (params){ where("title LIKE?","%#{params}%") }
   scope :search_status, -> (status){ where(status: status) }
   scope :pagination, -> (params){ page(params[:page]).per(5) }
   belongs_to :user

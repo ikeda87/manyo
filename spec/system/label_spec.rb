@@ -36,17 +36,17 @@ RSpec.describe 'ラベル管理機能', type: :system do
       end
     end
 
-  describe '検索機能' do
-    context 'ラベルを検索した場合' do
-      it '検索されたラベルが表示される' do
-        select "ラベル1", from: "ラベル"
-        click_button '検索'
-        task_list = all('.task_row')
-        expect(task_list[0]).to have_content 'ラベル1'
-        expect(task_list[0]).not_to have_content 'ラベル2'
-      end
-    end
-  end
+  # describe '検索機能' do
+  #   context 'ラベルを検索した場合' do
+  #     it '検索されたラベルが表示される' do
+  #       select "ラベル1", from: "ラベル"
+  #       click_button '検索'
+  #       task_list = all('.task_row')
+  #       expect(task_list[0]).to have_content 'ラベル1'
+  #       expect(task_list[0]).not_to have_content 'ラベル2'
+  #     end
+  #   end
+  # end
   # describe 'タスクとラベルの関連付けチェック' do
   #   context 'ラベルを付けてタスクを新規作成した場合' do
   #     it 'ラベル付きのタスクがタスク一覧画面に表示される' do

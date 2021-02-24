@@ -22,14 +22,14 @@ class TasksController < ApplicationController
     elsif params[:status].present?
       @tasks = Task.where(status: params[:status]).pagination(params)
 
-    # elsif params[:task].present?
-    #   @tasks = Task.where(task: params[:task]).pagination(params)
-    # elsif params[:label_id].present?
-    #   @tasks = Task.select(label_id: params[:label_id]).pagination(params)
+    elsif params[:task].present?
+      @tasks = Task.where(task: params[:task]).pagination(params)
+    elsif params[:label_id].present?
+      @tasks = Task.select(label_id: params[:label_id]).pagination(params)
 
-    elsif params[:task][:label_id].present?
-      @task_label = TaskLabel.where(label_id: params[:task][:label_id]).pluck(:task_id)
-      @task = Task.where(id: @task_label).pagination(params)
+    # elsif params[:task][:label_id].present?
+    #   @task_label = TaskLabel.where(label_id: params[:task][:label_id]).pluck(:task_id)
+    #   @task = Task.where(id: @task_label).pagination(params)
 
     else
       @tasks = Task.all.order(created_at: "DESC").pagination(params)

@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>タスク詳細</h1>
+  <h1>タスク詳細</h1><br>
   <% if notice.present? %>
     <p class="alert alert-success"><%= notice %></p>
   <% end %>
@@ -8,6 +8,11 @@
   <p>終了期限：<%= @task.deadline %></p>
   <p>ステータス：<%= @task.status %></p>
   <p>優先度：<%= @task.priority %></p>
+  <p>ラベル：
+    <% @task.labels.each do|label| %>
+    <%= label.name %>
+  <% end %></p>
   <%= link_to '編集', edit_task_path(@task.id), class:'btn btn-info' %>
+  <label>|</label>
   <%= link_to '一覧に戻る', tasks_path, class:'btn btn-info' %>
 </div>

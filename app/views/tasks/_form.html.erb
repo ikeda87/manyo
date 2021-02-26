@@ -25,6 +25,30 @@
   <%= f.label :priority %><br>
   <%= f.select :priority, Task.priorities.keys, include_blank:"選択してください" %>
 </div>
+<div><br>
+  <!-- <% n = 0 %> -->
+  <% if current_user.id == 1 %>
+    <% @default_user = User.find_by(id: 1) %>
+    <% @label_list = @default_user.labels %>
+    <%= f.collection_check_boxes(:label_ids, @label_list, :id, :name) %>
+    <!-- <% @label_list.each do |label| %>
+      <div>
+        <%= f.check_box :label_ids, { id: "checkbox#{n += 1}", multiple: true, checked: label[:checked], disabled: label[:disabled], include_hidden: false }, label[:id] %>
+        <%= f.label :label, label.name %>
+      </div>
+    <% end %> -->
+  <% else %>
+    <% @default_user = User.find_by(id: 1) %>
+    <% @label_list = @default_user.labels + current_user.labels %>
+    <%= f.collection_check_boxes(:label_ids, @label_list, :id, :name) %>
+    <!-- <% @label_list.each do |label| %>
+      <div>
+        <%= f.check_box :label_ids, { id: "checkbox#{n += 1}", multiple: true, checked: label[:checked], disabled: label[:disabled], include_hidden: false }, label[:id] %>
+        <%= f.label :label, label.name %>
+      </div>
+    <% end %> -->
+  <% end %>
+</div>
 <br><br>
   <%= f.submit "登録する", class:'btn btn-info' %>
 <br><br>

@@ -33,7 +33,5 @@ gem 'rails-i18n'
 gem 'kaminari'
 gem 'bootstrap', '~> 4.5.3'
 gem 'jquery-rails'
-
 gem 'bcrypt', '3.1.11'
-
-# gem 'faker'
+gem 'faker'
